@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATTENDANCE MANAGER | KHANAGO</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<title>Professional Attendance Manager | KHANAGO</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-/* --- GLOBAL STYLES & VARIABLES (ALL CAPS) --- */
+/* --- GLOBAL STYLES & VARIABLES (Professional & Clean) --- */
 :root {
     --kg-orange: #ff6a00;
-    --kg-dark: #222222;
-    --kg-light-bg: #f0f2f5; 
-    --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --kg-dark: #2c3e50; /* Dark Navy for text/primary elements */
+    --kg-light-bg: #f5f7fa; /* Very light, professional background */
+    --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 * {
     box-sizing: border-box;
-    /* ENSURE ALL TEXT IS CAPITALIZED */
-    text-transform: uppercase;
+    /* Reverting to standard case for professionalism and readability */
+    text-transform: none; 
 }
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: var(--kg-light-bg);
     color: var(--kg-dark);
     line-height: 1.6;
@@ -33,11 +33,10 @@ body {
 
 /* --- HEADER --- */
 .app-header {
-    background: var(--kg-orange);
+    background: var(--kg-dark); /* Dark header for contrast and authority */
     color: #fff;
-    padding: 20px 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border-bottom: 5px solid #cc5500;
+    padding: 18px 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .header-content {
@@ -50,18 +49,16 @@ body {
 
 .logo {
     margin: 0;
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .today-date {
-    font-size: 16px;
-    font-weight: 700;
-    padding: 8px 15px;
-    border-radius: 6px;
-    background: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: var(--kg-orange); /* Highlight date with orange */
 }
 
 .container {
@@ -71,66 +68,97 @@ body {
 }
 
 .section-title {
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 20px;
+    font-weight: 700;
     color: var(--kg-dark);
-    margin: 40px 0 20px;
-    border-left: 6px solid var(--kg-orange);
-    padding-left: 15px;
-    letter-spacing: 1px;
-}
-.section-title:first-child {
-    margin-top: 0;
+    margin: 30px 0 15px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
 }
 
 /* --- DASHBOARD CARDS --- */
 .dashboard-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .stat-card {
     background: #fff;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 25px;
+    border-radius: 8px;
     text-align: center;
-    box-shadow: var(--shadow-card);
-    border: 1px solid #eee;
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-soft);
+    border-top: 5px solid var(--kg-orange); /* Clean top border highlight */
+    transition: all 0.3s;
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
 }
 
 .stat-label {
     margin: 0;
-    font-size: 14px;
-    color: #777;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: 13px;
+    color: #7f8c8d;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .stat-value {
     margin: 5px 0 0;
-    font-size: 44px;
+    font-size: 38px;
     font-weight: 900;
-    color: var(--kg-orange);
+    color: var(--kg-dark);
 }
 
-.present-today .stat-value { color: #1e7e34; } /* STRONG GREEN */
-.on-leave .stat-value { color: #c82333; }    /* STRONG RED */
-.total-entries .stat-value { color: #0056b3; } /* STRONG BLUE */
+/* Color accents for clarity (subtle) */
+.present-today .stat-value { color: #2ecc71; } /* Green */
+.on-leave .stat-value { color: #e74c3c; }    /* Red */
+.total-wages .stat-value { color: var(--kg-orange); }
 
+
+/* --- NAVIGATION TABS --- */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #7f8c8d;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    color: var(--kg-dark);
+    border-bottom: 3px solid var(--kg-orange);
+    font-weight: 700;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px 0;
+}
+
+.tab-content.active {
+    display: block;
+}
 
 /* --- FORM STYLES (SHARED) --- */
 .form-container {
     background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: var(--shadow-subtle);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
     display: grid;
     gap: 20px;
     align-items: center;
@@ -142,21 +170,20 @@ body {
 }
 
 .form-container label {
-    font-weight: 800;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 13px;
     margin-bottom: 5px;
     color: var(--kg-dark);
-    letter-spacing: 0.5px;
 }
 
 .form-container input, 
 .form-container select {
     width: 100%;
-    padding: 12px 18px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -164,115 +191,101 @@ body {
 .form-container select:focus {
     border-color: var(--kg-orange);
     outline: none;
-    box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.3);
+    box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.2);
 }
 
-/* --- ATTENDANCE FORM GRID --- */
-.attendance-form .form-container {
+/* Specific Form Layouts */
+#attendanceForm {
     grid-template-columns: repeat(4, 1fr);
 }
-
-.attendance-form .form-actions {
-    grid-column: span 2; 
-    display: flex;
-    gap: 15px;
-    padding-top: 15px;
-}
-
-/* --- EMPLOYEE MANAGEMENT FORM GRID --- */
-.management-form .form-container {
+#managementForm {
     grid-template-columns: repeat(3, 1fr);
 }
 
-.management-form .form-actions {
-    grid-column: span 3;
+.form-actions {
+    grid-column: span 4;
     display: flex;
     gap: 15px;
-    padding-top: 15px;
+    padding-top: 10px;
+}
+#managementForm .form-actions {
+    grid-column: span 3;
 }
 
 
 /* --- BUTTONS --- */
 .btn {
     flex: 1;
-    padding: 15px;
+    padding: 12px 15px;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 800;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    letter-spacing: 0.5px;
+    text-transform: uppercase; /* Keep button labels punchy */
 }
 
 .btn .icon {
-    margin-right: 10px;
-    font-size: 1.1em;
+    margin-right: 8px;
+    font-size: 1em;
 }
 
 .btn-primary {
     background: var(--kg-orange);
     color: #fff;
-    box-shadow: 0 5px 10px rgba(255, 106, 0, 0.4);
+    box-shadow: 0 2px 5px rgba(255, 106, 0, 0.3);
 }
 
 .btn-secondary {
-    background: #555; 
+    background: #7f8c8d; 
     color: #fff;
 }
 
 .btn-success {
-    background: #1e7e34;
+    background: #2ecc71;
     color: #fff;
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
-
-.btn-primary:hover { background: #e06000; }
-.btn-secondary:hover { background: #444; }
-.btn-success:hover { background: #155d27; }
 
 
 /* --- ATTENDANCE TABLE --- */
 .table-responsive {
     overflow-x: auto;
-    box-shadow: var(--shadow-subtle);
-    border-radius: 15px;
+    box-shadow: var(--shadow-soft);
+    border-radius: 8px;
 }
 
 .attendance-table {
     width: 100%;
     border-collapse: collapse;
     background: #fff;
-    min-width: 700px; 
+    min-width: 750px; 
 }
 
 .attendance-table thead th {
-    background: #ffdbbf;
+    background: #ecf0f1; /* Light grey header */
     color: var(--kg-dark);
-    font-weight: 800;
-    padding: 18px 15px;
+    font-weight: 700;
+    padding: 12px 15px;
     text-align: left;
-    letter-spacing: 1px;
-    font-size: 14px;
-}
-
-.attendance-table tbody tr:nth-child(even) {
-    background-color: #fcfcfc;
+    font-size: 13px;
+    text-transform: uppercase;
 }
 
 .attendance-table tbody tr:hover {
-    background-color: #fff8f5;
+    background-color: #f7f9fc;
 }
 
 .attendance-table td {
-    padding: 15px;
+    padding: 12px 15px;
     font-size: 14px;
     border-bottom: 1px solid #eee;
     text-align: left;
@@ -280,37 +293,31 @@ body {
 }
 
 /* Status badging */
-.status-present { color: #1e7e34; font-weight: 800; }
-.status-leave { color: #c82333; font-weight: 800; }
+.status-present { color: #2ecc71; font-weight: 700; }
+.status-leave { color: #e74c3c; font-weight: 700; }
 
-.wage-cell { color: #6f42c1; font-weight: 900; text-align: right; } 
+.wage-cell { color: var(--kg-orange); font-weight: 700; text-align: right; } 
 
 /* --- FOOTER --- */
 .app-footer {
     text-align: center;
     font-size: 12px;
     color: #999;
-    padding: 25px 0;
-    margin-top: 30px;
+    padding: 20px 0;
+    margin-top: 40px;
     border-top: 1px solid #eee;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 
 /* --- RESPONSIVENESS --- */
 @media (max-width: 1050px) {
-    .attendance-form .form-container {
+    #attendanceForm, #managementForm {
         grid-template-columns: repeat(2, 1fr);
     }
-    .attendance-form .form-actions {
+    .form-actions {
         grid-column: span 2; 
         flex-direction: column;
-    }
-    .management-form .form-container {
-        grid-template-columns: 1fr;
-    }
-    .management-form .form-actions {
-        grid-column: span 1;
     }
 }
 
@@ -319,15 +326,18 @@ body {
         flex-direction: column;
     }
     .today-date {
-        margin-top: 10px;
+        margin-top: 8px;
+    }
+    .dashboard-stats {
+        gap: 10px;
     }
     .stat-value {
-        font-size: 36px;
+        font-size: 32px;
     }
-    .attendance-form .form-container {
+    #attendanceForm {
         grid-template-columns: 1fr;
     }
-    .attendance-form .form-actions {
+    .form-actions {
         grid-column: span 1;
     }
 }
@@ -338,7 +348,7 @@ body {
 
 <header class="app-header">
     <div class="header-content">
-        <h1 class="logo">👑 KHANAGO ATTENDANCE</h1>
+        <h1 class="logo">📊 KHANAGO ATTENDANCE</h1>
         <div class="today-date" id="currentDate"></div>
     </div>
 </header>
@@ -346,104 +356,109 @@ body {
 <main class="container">
 
     <section>
-        <h2 class="section-title">TODAY'S DASHBOARD STATS</h2>
+        <h2 class="section-title">Today's Performance Overview</h2>
         <div class="dashboard-stats">
             <div class="stat-card total-entries">
-                <p class="stat-label">TOTAL ENTRIES</p>
+                <p class="stat-label">Total Employees Logged</p>
                 <h2 class="stat-value" id="totalEmp">0</h2>
             </div>
             <div class="stat-card present-today">
-                <p class="stat-label">PRESENT TODAY</p>
+                <p class="stat-label">Currently Present</p>
                 <h2 class="stat-value" id="present">0</h2>
             </div>
             <div class="stat-card on-leave">
-                <p class="stat-label">ON LEAVE</p>
+                <p class="stat-label">Employees on Leave</p>
                 <h2 class="stat-value" id="leave">0</h2>
             </div>
             <div class="stat-card total-wages">
-                <p class="stat-label">TOTAL DAILY WAGE</p>
+                <p class="stat-label">Daily Wage Commitment</p>
                 <h2 class="stat-value">₹<span id="wageTotal">0</span></h2>
             </div>
         </div>
     </section>
-
-    <section class="management-form">
-        <h2 class="section-title">EMPLOYEE MANAGEMENT</h2>
-        <div class="form-container">
-            
-            <div class="input-group">
-                <label for="mgmtName">EMPLOYEE NAME</label>
-                <input id="mgmtName" type="text" placeholder="E.G., RAMESH SINGH">
-            </div>
-
-            <div class="input-group">
-                <label for="mgmtEmpId">EMPLOYEE ID</label>
-                <input id="mgmtEmpId" type="text" placeholder="E.G., KG-105">
-            </div>
-
-            <div class="input-group">
-                <label for="mgmtWage">DAILY WAGE (₹)</label>
-                <input type="number" id="mgmtWage" min="0" value="500" placeholder="E.G., 500">
-            </div>
-
-            <div class="form-actions">
-                <button class="btn btn-success" onclick="addEmployee()">
-                    <span class="icon">➕</span> ADD NEW EMPLOYEE & SAVE
-                </button>
-            </div>
-        </div>
-    </section>
     
-    <section class="attendance-form">
-        <h2 class="section-title">RECORD DAILY ATTENDANCE</h2>
-        <div class="form-container">
+    <h2 class="section-title">Operations</h2>
+    
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="attendance">Daily Attendance Log</button>
+        <button class="tab-btn" data-tab="management">Employee Management</button>
+    </div>
+
+    <div id="attendance" class="tab-content active">
+        <div class="form-container" id="attendanceForm">
             
             <div class="input-group">
-                <label for="name">EMPLOYEE NAME</label>
-                <input id="name" type="text" placeholder="E.G., RAMESH SINGH">
+                <label for="name">Employee Name</label>
+                <input id="name" type="text" placeholder="E.g., Ramesh Singh">
             </div>
 
             <div class="input-group">
-                <label for="empId">EMPLOYEE ID</label>
-                <input id="empId" type="text" placeholder="E.G., KG-105">
+                <label for="empId">Employee ID</label>
+                <input id="empId" type="text" placeholder="E.g., KG-105">
             </div>
 
             <div class="input-group">
-                <label for="status">STATUS</label>
+                <label for="status">Status</label>
                 <select id="status">
-                    <option value="PRESENT">PRESENT</option>
-                    <option value="LEAVE">LEAVE</option>
+                    <option value="PRESENT">Present</option>
+                    <option value="LEAVE">Leave</option>
                 </select>
             </div>
 
             <div class="input-group">
-                <label for="wage">DAILY WAGE (₹)</label>
-                <input type="number" id="wage" min="0" value="0" placeholder="AUTO FILLED / ENTER WAGE">
+                <label for="wage">Daily Wage (₹)</label>
+                <input type="number" id="wage" min="0" value="0" placeholder="Wage (Auto-fill Recommended)">
             </div>
 
             <div class="form-actions">
                 <button class="btn btn-primary" onclick="login()">
-                    <span class="icon">➡️</span> LOGIN / CLOCK-IN
+                    <span class="icon">➡️</span> Clock-In / Login
                 </button>
                 <button class="btn btn-secondary" onclick="logout()">
-                    <span class="icon">🛑</span> LOGOUT & SAVE
+                    <span class="icon">🛑</span> Clock-Out & Save
                 </button>
             </div>
         </div>
-    </section>
+    </div>
+    
+    <div id="management" class="tab-content">
+        <div class="form-container" id="managementForm">
+            
+            <div class="input-group">
+                <label for="mgmtName">Employee Name</label>
+                <input id="mgmtName" type="text" placeholder="E.g., New Employee Name">
+            </div>
 
+            <div class="input-group">
+                <label for="mgmtEmpId">Employee ID</label>
+                <input id="mgmtEmpId" type="text" placeholder="E.g., KG-106 (Unique)">
+            </div>
+
+            <div class="input-group">
+                <label for="mgmtWage">Default Daily Wage (₹)</label>
+                <input type="number" id="mgmtWage" min="0" value="500" placeholder="Default Wage">
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-success" onclick="addEmployee()">
+                    <span class="icon">➕</span> Add New Employee Record
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <section>
-        <h2 class="section-title">TODAY'S ATTENDANCE LOG</h2>
+        <h2 class="section-title">Today's Attendance Log</h2>
         <div class="table-responsive">
             <table class="attendance-table">
                 <thead>
                     <tr>
-                        <th style="width: 25%;">NAME</th>
+                        <th style="width: 25%;">Employee Name</th>
                         <th style="width: 15%;">ID</th>
-                        <th style="width: 15%;">STATUS</th>
-                        <th style="width: 15%;">LOGIN</th>
-                        <th style="width: 15%;">LOGOUT</th>
-                        <th style="width: 15%; text-align: right;">WAGE (₹)</th>
+                        <th style="width: 15%;">Status</th>
+                        <th style="width: 15%;">Login Time</th>
+                        <th style="width: 15%;">Logout Time</th>
+                        <th style="width: 15%; text-align: right;">Wage (₹)</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
@@ -454,11 +469,11 @@ body {
 </main>
 
 <footer class="app-footer">
-    © 2025 KHANAGO | ATTENDANCE & WAGE SYSTEM | CODED BY EPIC AI
+    &copy; 2025 KHANAGO | Attendance & Wage System | Professional Edition
 </footer>
 
 <script>
-// NOTE: YOU MUST UPDATE YOUR GOOGLE APPS SCRIPT TO HANDLE THE NEW 'ADD_EMPLOYEE' MODE!
+// NOTE: SCRIPT URL AND DATA HANDLING LOGIC IS MAINTAINED
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbzEqeOZhYUAm7D1bY392BWkcMsrQgDZq1DoAaGLbHliGl6h5Fbwy5C_yjAcZ0rUbptY/exec";
 
@@ -468,6 +483,7 @@ let present = 0, leave = 0, wageTotal = 0, total = 0;
 // HELPER FUNCTIONS (TIME & DATE)
 function initDashboard() {
     document.getElementById('currentDate').innerText = today();
+    setupTabs();
 }
 
 function timeNow() {
@@ -475,9 +491,32 @@ function timeNow() {
 }
 function today() {
     return new Date().toLocaleDateString("en-IN", {
-        weekday: 'SHORT', year: 'NUMERIC', month: 'SHORT', day: 'NUMERIC'
+        weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
     });
 }
+
+// TAB FUNCTIONALITY
+function setupTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-tab');
+
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === targetId) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
+}
+
 
 // 1. EMPLOYEE MANAGEMENT LOGIC
 function addEmployee() {
@@ -486,7 +525,7 @@ function addEmployee() {
     const wage = document.getElementById('mgmtWage');
 
     if (!name.value || !empId.value || !wage.value) {
-        alert("🛑 PLEASE FILL IN EMPLOYEE NAME, ID, AND DAILY WAGE.");
+        alert("Please fill in Employee Name, ID, and Default Daily Wage.");
         return;
     }
     
@@ -495,7 +534,7 @@ function addEmployee() {
         method: "POST",
         mode: "no-cors",
         body: JSON.stringify({
-            mode: "ADD_EMPLOYEE", // New mode for your Apps Script
+            mode: "ADD_EMPLOYEE",
             empId: empId.value,
             name: name.value,
             wage: Number(wage.value) || 0
@@ -504,13 +543,13 @@ function addEmployee() {
         name.value = '';
         empId.value = '';
         wage.value = '500';
-        alert(`✅ NEW EMPLOYEE ${name.value} ADDED SUCCESSFULLY!`);
+        alert(`✅ New employee record for ${name.value} added successfully.`);
     }).catch(error => {
-        console.error('SUBMISSION ERROR:', error);
+        console.error('Submission Error:', error);
         name.value = '';
         empId.value = '';
         wage.value = '500';
-        alert("✅ NEW EMPLOYEE DATA SENT TO SERVER! (CHECK CONSOLE FOR NETWORK STATUS)");
+        alert("✅ New employee data sent to server! (Check console for network status)");
     });
 }
 
@@ -518,12 +557,12 @@ function addEmployee() {
 function login() {
     const empName = document.getElementById('name').value;
     if (!empName) {
-        alert("🛑 PLEASE ENTER THE EMPLOYEE NAME BEFORE LOGGING IN.");
+        alert("🛑 Please enter the Employee Name before logging in.");
         return;
     }
     
     loginTime = timeNow();
-    alert("✅ LOGIN MARKED FOR " + empName + " AT " + loginTime);
+    alert("✅ Login marked for " + empName + " at " + loginTime);
 }
 
 function logout() {
@@ -533,14 +572,14 @@ function logout() {
     const wage = document.getElementById('wage');
     
     if (!name.value || !empId.value) {
-        alert("🛑 PLEASE FILL IN EMPLOYEE NAME AND ID.");
+        alert("🛑 Please fill in Employee Name and ID.");
         return;
     }
 
     const stat = status.value;
     
     if (!loginTime && stat === "PRESENT") {
-        alert("🛑 PLEASE CLICK THE 'LOGIN / CLOCK-IN' BUTTON FIRST.");
+        alert("🛑 Please click the 'Clock-In / Login' button first.");
         return;
     }
 
@@ -580,7 +619,7 @@ function logout() {
         method: "POST",
         mode: "no-cors",
         body: JSON.stringify({
-            mode: "ATTENDANCE_LOG", // Specific mode for logging attendance
+            mode: "ATTENDANCE_LOG",
             date: today(),
             empId: empId.value,
             name: name.value,
@@ -596,9 +635,9 @@ function logout() {
         status.value = 'PRESENT';
         wage.value = '0';
         loginTime = ""; 
-        alert("💾 ATTENDANCE DATA SAVED SUCCESSFULLY!");
+        alert("💾 Attendance data saved successfully!");
     }).catch(error => {
-        console.error('SUBMISSION ERROR:', error);
+        console.error('Submission Error:', error);
         
         // Clear form fields even on perceived error for better UX
         name.value = '';
@@ -606,7 +645,7 @@ function logout() {
         status.value = 'PRESENT';
         wage.value = '0';
         loginTime = ""; 
-        alert("💾 ATTENDANCE DATA SENT TO SERVER! (CHECK CONSOLE FOR NETWORK STATUS)");
+        alert("💾 Attendance data sent to server! (Check console for network status)");
     });
 }
 </script>
