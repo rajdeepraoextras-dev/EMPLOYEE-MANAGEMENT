@@ -399,6 +399,11 @@ body {
                 <input type="number" id="mgmtWage" min="0" value="500" placeholder="E.G., 500">
             </div>
 
+            <div class="input-group">
+                <label for="mgmtRole">ROLE</label>
+                <input id="mgmtRole" type="text" placeholder="E.G., CHEF/SERVER/CLEANER">
+            </div>
+
             <div class="form-actions">
                 <button class="btn btn-success" onclick="addEmployee()">
                     <span class="icon">➕</span> ADD NEW EMPLOYEE & SAVE
@@ -471,24 +476,23 @@ body {
 </footer>
 
 <script>
-// NOTE: YOU MUST UPDATE YOUR GOOGLE APPS SCRIPT TO HANDLE THE NEW 'ADD_EMPLOYEE' MODE 
-// AND ADD A FUNCTION TO FETCH CUMULATIVE DATA ON PAGE LOAD!
+// THE PROVIDED WEB APP URL IS PLACED HERE
 const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbzEqeOZhYUAm7D1bY392BWkcMsrQgDZq1DoAaGLbHliGl6h5Fbwy5C_yjAcZ0rUbptY/exec"; // <<< UPDATE THIS URL
+"https://script.google.com/macros/s/AKfycbyIoECTfPIMboLCR0x8zk-9EhIP0Bs8Nr4Mduat4V7Id-_1idGvHD1omnI1h6De060wgw/exec"; 
 
 let loginTime = "";
 let present = 0, leave = 0, wageTotal = 0, total = 0;
 let totalRegisteredEmployees = 0;
 let cumulativeWageTotal = 0;
 
-// NEW: FUNCTION TO FETCH INITIAL DATA
+// FUNCTION TO FETCH INITIAL DATA
 async function fetchCumulativeData() {
     try {
+        // Since Google Apps Script returns text, we use the URL directly for a GET request
         const response = await fetch(SCRIPT_URL);
         
         if (response.ok) {
-            // Need to handle the response text if 'no-cors' is used and server doesn't return JSON cleanly.
-            // Assuming the script is deployed correctly and returns JSON:
+            // Need to parse the response text as JSON
             const data = await response.json(); 
             
             if (data.result === "success") {
@@ -499,15 +503,10 @@ async function fetchCumulativeData() {
                 document.getElementById('cumulativeWage').innerText = cumulativeWageTotal;
             } else {
                 console.error("Server Error:", data.message);
-                document.getElementById('totalRegistered').innerText = 'ERROR';
-                document.getElementById('cumulativeWage').innerText = 'ERROR';
             }
         }
     } catch (error) {
         console.error("Fetch Error during initialization:", error);
-        // Fallback for visual confirmation
-        document.getElementById('totalRegistered').innerText = '0';
-        document.getElementById('cumulativeWage').innerText = '0';
     }
 }
 
@@ -532,6 +531,7 @@ function addEmployee() {
     const name = document.getElementById('mgmtName');
     const empId = document.getElementById('mgmtEmpId');
     const wage = document.getElementById('mgmtWage');
+    const role = document.getElementById('mgmtRole'); // Assuming you want to send the Role too
 
     if (!name.value || !empId.value || !wage.value) {
         alert("🛑 PLEASE FILL IN EMPLOYEE NAME, ID, AND DAILY WAGE.");
@@ -546,7 +546,8 @@ function addEmployee() {
             mode: "ADD_EMPLOYEE", 
             empId: empId.value,
             name: name.value,
-            wage: Number(wage.value) || 0
+            wage: Number(wage.value) || 0,
+            role: role.value // Send role data
         })
     }).then(() => {
         // Optimistically update the total registered count and clear fields
@@ -556,12 +557,14 @@ function addEmployee() {
         name.value = '';
         empId.value = '';
         wage.value = '500';
+        role.value = '';
         alert(`✅ NEW EMPLOYEE ${name.value} ADDED SUCCESSFULLY!`);
     }).catch(error => {
         console.error('SUBMISSION ERROR:', error);
         name.value = '';
         empId.value = '';
         wage.value = '500';
+        role.value = '';
         alert("✅ NEW EMPLOYEE DATA SENT TO SERVER! (CHECK CONSOLE FOR NETWORK STATUS)");
     });
 }
@@ -672,4 +675,3 @@ function logout() {
 
 </body>
 </html>
-
