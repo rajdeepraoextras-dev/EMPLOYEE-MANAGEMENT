@@ -183,11 +183,11 @@ body {
 
 /* --- EMPLOYEE MANAGEMENT FORM GRID --- */
 .management-form .form-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* Adjusted for Role input */
 }
 
 .management-form .form-actions {
-    grid-column: span 3;
+    grid-column: span 4; /* Buttons take full width */
     display: flex;
     gap: 15px;
     padding-top: 15px;
@@ -301,18 +301,12 @@ body {
 
 /* --- RESPONSIVENESS --- */
 @media (max-width: 1050px) {
-    .attendance-form .form-container {
+    .attendance-form .form-container, .management-form .form-container {
         grid-template-columns: repeat(2, 1fr);
     }
-    .attendance-form .form-actions {
+    .attendance-form .form-actions, .management-form .form-actions {
         grid-column: span 2; 
         flex-direction: column;
-    }
-    .management-form .form-container {
-        grid-template-columns: 1fr;
-    }
-    .management-form .form-actions {
-        grid-column: span 1;
     }
 }
 
@@ -326,10 +320,10 @@ body {
     .stat-value {
         font-size: 36px;
     }
-    .attendance-form .form-container {
+    .attendance-form .form-container, .management-form .form-container {
         grid-template-columns: 1fr;
     }
-    .attendance-form .form-actions {
+    .attendance-form .form-actions, .management-form .form-actions {
         grid-column: span 1;
     }
 }
@@ -401,7 +395,7 @@ body {
 
             <div class="input-group">
                 <label for="mgmtRole">ROLE</label>
-                <input id="mgmtRole" type="text" placeholder="E.G., CHEF/SERVER/CLEANER">
+                <input id="mgmtRole" type="text" placeholder="E.G., CHEF/SERVER">
             </div>
 
             <div class="form-actions">
@@ -488,11 +482,10 @@ let cumulativeWageTotal = 0;
 // FUNCTION TO FETCH INITIAL DATA
 async function fetchCumulativeData() {
     try {
-        // Since Google Apps Script returns text, we use the URL directly for a GET request
+        // Fetch data from the Apps Script doGet function
         const response = await fetch(SCRIPT_URL);
         
         if (response.ok) {
-            // Need to parse the response text as JSON
             const data = await response.json(); 
             
             if (data.result === "success") {
@@ -531,7 +524,7 @@ function addEmployee() {
     const name = document.getElementById('mgmtName');
     const empId = document.getElementById('mgmtEmpId');
     const wage = document.getElementById('mgmtWage');
-    const role = document.getElementById('mgmtRole'); // Assuming you want to send the Role too
+    const role = document.getElementById('mgmtRole'); 
 
     if (!name.value || !empId.value || !wage.value) {
         alert("🛑 PLEASE FILL IN EMPLOYEE NAME, ID, AND DAILY WAGE.");
@@ -547,7 +540,7 @@ function addEmployee() {
             empId: empId.value,
             name: name.value,
             wage: Number(wage.value) || 0,
-            role: role.value // Send role data
+            role: role.value // Sends the Role to the Apps Script
         })
     }).then(() => {
         // Optimistically update the total registered count and clear fields
