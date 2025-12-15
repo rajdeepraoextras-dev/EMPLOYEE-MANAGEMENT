@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATTENDANCE MANAGER | KHANAGO</title>
+<title>COMPREHENSIVE ATTENDANCE MANAGER | KHANAGO</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
 
@@ -85,14 +85,15 @@ body {
 
 /* --- DASHBOARD CARDS --- */
 .dashboard-stats {
+    /* Changed grid to 3 columns for better layout of 6 cards */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 25px;
 }
 
 .stat-card {
     background: #fff;
-    padding: 30px;
+    padding: 25px; /* Slightly reduced padding */
     border-radius: 15px;
     text-align: center;
     box-shadow: var(--shadow-card);
@@ -107,7 +108,7 @@ body {
 
 .stat-label {
     margin: 0;
-    font-size: 14px;
+    font-size: 13px; /* Slightly smaller label */
     color: #777;
     font-weight: 700;
     letter-spacing: 1px;
@@ -115,14 +116,16 @@ body {
 
 .stat-value {
     margin: 5px 0 0;
-    font-size: 44px;
+    font-size: 38px; /* Slightly smaller value */
     font-weight: 900;
     color: var(--kg-orange);
 }
 
-.present-today .stat-value { color: #1e7e34; } /* STRONG GREEN */
-.on-leave .stat-value { color: #c82333; }    /* STRONG RED */
-.total-entries .stat-value { color: #0056b3; } /* STRONG BLUE */
+/* Color accents for clarity */
+.present-today .stat-value { color: #1e7e34; } 
+.on-leave .stat-value { color: #c82333; }    
+.total-wages .stat-value { color: #6f42c1; } /* PURPLE for Money Today */
+.cumulative-stats .stat-value { color: #0056b3; } /* BLUE for Cumulative */
 
 
 /* --- FORM STYLES (SHARED) --- */
@@ -346,24 +349,35 @@ body {
 <main class="container">
 
     <section>
-        <h2 class="section-title">TODAY'S DASHBOARD STATS</h2>
+        <h2 class="section-title">COMPREHENSIVE DASHBOARD STATS</h2>
         <div class="dashboard-stats">
             <div class="stat-card total-entries">
-                <p class="stat-label">TOTAL ENTRIES</p>
+                <p class="stat-label">TOTAL ENTRIES (TODAY)</p>
                 <h2 class="stat-value" id="totalEmp">0</h2>
             </div>
             <div class="stat-card present-today">
-                <p class="stat-label">PRESENT TODAY</p>
+                <p class="stat-label">PRESENT (TODAY)</p>
                 <h2 class="stat-value" id="present">0</h2>
             </div>
             <div class="stat-card on-leave">
-                <p class="stat-label">ON LEAVE</p>
+                <p class="stat-label">ON LEAVE (TODAY)</p>
                 <h2 class="stat-value" id="leave">0</h2>
             </div>
-            <div class="stat-card total-wages">
-                <p class="stat-label">TOTAL DAILY WAGE</p>
+
+            <div class="stat-card cumulative-stats">
+                <p class="stat-label">TOTAL WAGE (TODAY)</p>
                 <h2 class="stat-value">₹<span id="wageTotal">0</span></h2>
             </div>
+            
+            <div class="stat-card cumulative-stats">
+                <p class="stat-label">TOTAL EMPLOYEES REGISTERED</p>
+                <h2 class="stat-value">👨‍💼<span id="totalRegistered">0</span></h2>
+                </div>
+            
+            <div class="stat-card cumulative-stats">
+                <p class="stat-label">TOTAL WAGE TILL NOW</p>
+                <h2 class="stat-value">₹<span id="cumulativeWage">0</span></h2>
+                </div>
         </div>
     </section>
 
@@ -458,16 +472,25 @@ body {
 </footer>
 
 <script>
-// NOTE: YOU MUST UPDATE YOUR GOOGLE APPS SCRIPT TO HANDLE THE NEW 'ADD_EMPLOYEE' MODE!
+// NOTE: YOU MUST UPDATE YOUR GOOGLE APPS SCRIPT TO HANDLE THE NEW 'ADD_EMPLOYEE' MODE 
+// AND ADD A FUNCTION TO FETCH CUMULATIVE DATA ON PAGE LOAD!
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbzEqeOZhYUAm7D1bY392BWkcMsrQgDZq1DoAaGLbHliGl6h5Fbwy5C_yjAcZ0rUbptY/exec";
 
 let loginTime = "";
 let present = 0, leave = 0, wageTotal = 0, total = 0;
 
+// PLACEHOLDERS FOR CUMULATIVE DATA (These should be fetched from the server)
+let totalRegisteredEmployees = 0;
+let cumulativeWageTotal = 0;
+
 // HELPER FUNCTIONS (TIME & DATE)
 function initDashboard() {
     document.getElementById('currentDate').innerText = today();
+    // In a real app, call a function here: fetchCumulativeData();
+    // For now, we manually set the placeholders so the fields aren't empty
+    document.getElementById('totalRegistered').innerText = '0';
+    document.getElementById('cumulativeWage').innerText = '0';
 }
 
 function timeNow() {
@@ -501,6 +524,10 @@ function addEmployee() {
             wage: Number(wage.value) || 0
         })
     }).then(() => {
+        // Optimistically update the total registered count
+        totalRegisteredEmployees++;
+        document.getElementById('totalRegistered').innerText = totalRegisteredEmployees;
+        
         name.value = '';
         empId.value = '';
         wage.value = '500';
@@ -549,16 +576,22 @@ function logout() {
     
     const wageVal = stat === "LEAVE" ? 0 : Number(wage.value) || 0; 
     
-    // --- DASHBOARD UPDATES ---
+    // --- DASHBOARD UPDATES (TODAY) ---
     total++;
     document.getElementById("totalEmp").innerText = total;
 
     if (stat === "PRESENT") present++; else leave++;
     wageTotal += wageVal;
+    // Update Today's wage
+    document.getElementById("wageTotal").innerText = wageTotal;
+    
+    // Optimistically update the Cumulative Wage Total
+    cumulativeWageTotal += wageVal;
+    document.getElementById('cumulativeWage').innerText = cumulativeWageTotal;
+
 
     document.getElementById("present").innerText = present;
     document.getElementById("leave").innerText = leave;
-    document.getElementById("wageTotal").innerText = wageTotal;
 
     // --- TABLE ROW CREATION ---
     const statusClass = stat === "PRESENT" ? "status-present" : "status-leave";
