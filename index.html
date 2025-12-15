@@ -3,22 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Attendance Manager | KHANAGO</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📅</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>ATTENDANCE MANAGER | KHANAGO</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
 
 <style>
-/* --- Global Styles & Variables --- */
+/* --- GLOBAL STYLES & VARIABLES (ALL CAPS) --- */
 :root {
     --kg-orange: #ff6a00;
-    --kg-dark: #333333;
-    --kg-light-bg: #f7f9fc; /* Slightly lighter background */
-    --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.05);
-    --shadow-card: 0 6px 18px rgba(0, 0, 0, 0.1);
+    --kg-dark: #222222;
+    --kg-light-bg: #f0f2f5; 
+    --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 * {
     box-sizing: border-box;
+    /* ENSURE ALL TEXT IS CAPITALIZED */
+    text-transform: uppercase;
 }
 
 body {
@@ -29,16 +31,17 @@ body {
     line-height: 1.6;
 }
 
-/* --- Header --- */
+/* --- HEADER --- */
 .app-header {
     background: var(--kg-orange);
     color: #fff;
-    padding: 18px 25px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-bottom: 5px solid #cc5500;
 }
 
 .header-content {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -47,95 +50,90 @@ body {
 
 .logo {
     margin: 0;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
 }
 
 .today-date {
-    font-size: 15px;
-    font-weight: 400;
-    opacity: 0.9;
-    padding: 5px 10px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 8px 15px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .container {
-    max-width: 1200px;
-    margin: 25px auto;
+    max-width: 1300px;
+    margin: 30px auto;
     padding: 0 15px;
 }
 
 .section-title {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 800;
     color: var(--kg-dark);
-    margin: 30px 0 15px;
-    /* Clean separator */
-    border-left: 5px solid var(--kg-orange);
-    padding-left: 10px;
+    margin: 40px 0 20px;
+    border-left: 6px solid var(--kg-orange);
+    padding-left: 15px;
+    letter-spacing: 1px;
 }
 .section-title:first-child {
     margin-top: 0;
 }
 
-/* --- Dashboard Cards --- */
+/* --- DASHBOARD CARDS --- */
 .dashboard-stats {
     display: grid;
-    /* Responsive grid: min 220px wide columns */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
 }
 
 .stat-card {
     background: #fff;
-    padding: 25px;
-    border-radius: 12px;
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: var(--shadow-subtle);
-    border-left: 5px solid var(--kg-orange); /* Highlight border */
+    box-shadow: var(--shadow-card);
+    border: 1px solid #eee;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .stat-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .stat-label {
     margin: 0;
     font-size: 14px;
     color: #777;
-    font-weight: 400;
-    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .stat-value {
     margin: 5px 0 0;
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 44px;
+    font-weight: 900;
     color: var(--kg-orange);
 }
 
-/* Color accents for clarity */
-.present-today .stat-value { color: #28a745; } /* Green */
-.on-leave .stat-value { color: #dc3545; }    /* Red */
-.total-entries .stat-value { color: #007bff; } /* Blue */
-.total-wages .stat-value { color: #6f42c1; } /* Purple */
+.present-today .stat-value { color: #1e7e34; } /* STRONG GREEN */
+.on-leave .stat-value { color: #c82333; }    /* STRONG RED */
+.total-entries .stat-value { color: #0056b3; } /* STRONG BLUE */
 
 
-/* --- Attendance Form --- */
+/* --- FORM STYLES (SHARED) --- */
 .form-container {
     background: #fff;
-    padding: 25px;
-    border-radius: 12px;
+    padding: 30px;
+    border-radius: 15px;
     box-shadow: var(--shadow-subtle);
-    
-    /* Advanced grid for better alignment */
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
     gap: 20px;
-    align-items: center; /* Vertically align items */
+    align-items: center;
 }
 
 .input-group {
@@ -144,19 +142,21 @@ body {
 }
 
 .form-container label {
-    font-weight: 600;
+    font-weight: 800;
     font-size: 14px;
     margin-bottom: 5px;
     color: var(--kg-dark);
+    letter-spacing: 0.5px;
 }
 
 .form-container input, 
 .form-container select {
     width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
+    padding: 12px 18px;
+    border: 2px solid #ddd;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 600;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -164,84 +164,103 @@ body {
 .form-container select:focus {
     border-color: var(--kg-orange);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.2);
+    box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.3);
 }
 
-.form-actions {
+/* --- ATTENDANCE FORM GRID --- */
+.attendance-form .form-container {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.attendance-form .form-actions {
     grid-column: span 2; 
     display: flex;
     gap: 15px;
-    padding-top: 15px; /* Add padding to align with other inputs */
+    padding-top: 15px;
 }
 
-/* --- Buttons --- */
+/* --- EMPLOYEE MANAGEMENT FORM GRID --- */
+.management-form .form-container {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.management-form .form-actions {
+    grid-column: span 3;
+    display: flex;
+    gap: 15px;
+    padding-top: 15px;
+}
+
+
+/* --- BUTTONS --- */
 .btn {
     flex: 1;
-    padding: 12px 15px;
+    padding: 15px;
     border: none;
     border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 800;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+    letter-spacing: 0.5px;
 }
 
 .btn .icon {
-    margin-right: 8px;
+    margin-right: 10px;
     font-size: 1.1em;
 }
 
 .btn-primary {
     background: var(--kg-orange);
     color: #fff;
-    box-shadow: 0 3px 6px rgba(255, 106, 0, 0.3);
+    box-shadow: 0 5px 10px rgba(255, 106, 0, 0.4);
 }
 
 .btn-secondary {
-    background: #5a6268; 
+    background: #555; 
+    color: #fff;
+}
+
+.btn-success {
+    background: #1e7e34;
     color: #fff;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary:hover { background: #e06000; }
-.btn-secondary:hover { background: #4e5458; }
+.btn-secondary:hover { background: #444; }
+.btn-success:hover { background: #155d27; }
 
 
-/* --- Attendance Table --- */
+/* --- ATTENDANCE TABLE --- */
 .table-responsive {
     overflow-x: auto;
     box-shadow: var(--shadow-subtle);
-    border-radius: 12px;
+    border-radius: 15px;
 }
 
 .attendance-table {
     width: 100%;
     border-collapse: collapse;
     background: #fff;
-    /* Ensure border radius shows correctly */
-    min-width: 600px; 
+    min-width: 700px; 
 }
 
 .attendance-table thead th {
-    background: #ffdbbf; /* Lighter orange header */
+    background: #ffdbbf;
     color: var(--kg-dark);
-    font-weight: 700;
-    padding: 15px 10px;
+    font-weight: 800;
+    padding: 18px 15px;
     text-align: left;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-}
-
-.attendance-table tbody tr {
-    transition: background-color 0.3s;
+    letter-spacing: 1px;
+    font-size: 14px;
 }
 
 .attendance-table tbody tr:nth-child(even) {
@@ -249,58 +268,66 @@ body {
 }
 
 .attendance-table tbody tr:hover {
-    background-color: #fff8f5; /* Light highlight on hover */
+    background-color: #fff8f5;
 }
 
 .attendance-table td {
-    padding: 12px 10px;
+    padding: 15px;
     font-size: 14px;
     border-bottom: 1px solid #eee;
     text-align: left;
     vertical-align: middle;
 }
 
-/* Specific column styles */
-.attendance-table td:nth-child(3) { font-weight: 600; } /* Status column bold */
-.attendance-table td:last-child { color: #6f42c1; font-weight: 700; text-align: right; } /* Wage column */
-
 /* Status badging */
-.status-present { color: #28a745; font-weight: 700; }
-.status-leave { color: #dc3545; font-style: italic; }
+.status-present { color: #1e7e34; font-weight: 800; }
+.status-leave { color: #c82333; font-weight: 800; }
 
-/* --- Footer --- */
+.wage-cell { color: #6f42c1; font-weight: 900; text-align: right; } 
+
+/* --- FOOTER --- */
 .app-footer {
     text-align: center;
     font-size: 12px;
     color: #999;
-    padding: 20px 0;
+    padding: 25px 0;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    font-weight: 600;
 }
 
 
-/* --- Responsiveness for Mobile --- */
-@media (max-width: 992px) {
-    /* For tablets/smaller screens, the form layout changes */
-    .form-container {
+/* --- RESPONSIVENESS --- */
+@media (max-width: 1050px) {
+    .attendance-form .form-container {
         grid-template-columns: repeat(2, 1fr);
     }
-    .form-actions {
-        grid-column: span 2; /* Buttons take full width */
+    .attendance-form .form-actions {
+        grid-column: span 2; 
         flex-direction: column;
+    }
+    .management-form .form-container {
+        grid-template-columns: 1fr;
+    }
+    .management-form .form-actions {
+        grid-column: span 1;
     }
 }
 
-@media (max-width: 576px) {
-    /* For phones, everything stacks vertically */
+@media (max-width: 600px) {
     .header-content {
         flex-direction: column;
     }
     .today-date {
-        margin-top: 5px;
+        margin-top: 10px;
     }
-    .form-container {
+    .stat-value {
+        font-size: 36px;
+    }
+    .attendance-form .form-container {
         grid-template-columns: 1fr;
     }
-    .form-actions {
+    .attendance-form .form-actions {
         grid-column: span 1;
     }
 }
@@ -311,82 +338,112 @@ body {
 
 <header class="app-header">
     <div class="header-content">
-        <h1 class="logo">📅 KHANAGO Attendance</h1>
+        <h1 class="logo">👑 KHANAGO ATTENDANCE</h1>
         <div class="today-date" id="currentDate"></div>
     </div>
 </header>
 
 <main class="container">
 
-    <section class="dashboard-stats">
-        <div class="stat-card total-entries">
-            <p class="stat-label">Total Entries</p>
-            <h2 class="stat-value" id="totalEmp">0</h2>
-        </div>
-        <div class="stat-card present-today">
-            <p class="stat-label">Present Today</p>
-            <h2 class="stat-value" id="present">0</h2>
-        </div>
-        <div class="stat-card on-leave">
-            <p class="stat-label">On Leave</p>
-            <h2 class="stat-value" id="leave">0</h2>
-        </div>
-        <div class="stat-card total-wages">
-            <p class="stat-label">Total Daily Wage</p>
-            <h2 class="stat-value">₹<span id="wageTotal">0</span></h2>
+    <section>
+        <h2 class="section-title">TODAY'S DASHBOARD STATS</h2>
+        <div class="dashboard-stats">
+            <div class="stat-card total-entries">
+                <p class="stat-label">TOTAL ENTRIES</p>
+                <h2 class="stat-value" id="totalEmp">0</h2>
+            </div>
+            <div class="stat-card present-today">
+                <p class="stat-label">PRESENT TODAY</p>
+                <h2 class="stat-value" id="present">0</h2>
+            </div>
+            <div class="stat-card on-leave">
+                <p class="stat-label">ON LEAVE</p>
+                <h2 class="stat-value" id="leave">0</h2>
+            </div>
+            <div class="stat-card total-wages">
+                <p class="stat-label">TOTAL DAILY WAGE</p>
+                <h2 class="stat-value">₹<span id="wageTotal">0</span></h2>
+            </div>
         </div>
     </section>
 
-    <section class="attendance-form-section">
-        <h2 class="section-title">Record Attendance</h2>
+    <section class="management-form">
+        <h2 class="section-title">EMPLOYEE MANAGEMENT</h2>
         <div class="form-container">
             
             <div class="input-group">
-                <label for="name">Employee Name</label>
-                <input id="name" type="text" placeholder="e.g., Ramesh Singh">
+                <label for="mgmtName">EMPLOYEE NAME</label>
+                <input id="mgmtName" type="text" placeholder="E.G., RAMESH SINGH">
             </div>
 
             <div class="input-group">
-                <label for="empId">Employee ID</label>
-                <input id="empId" type="text" placeholder="e.g., KG-105">
+                <label for="mgmtEmpId">EMPLOYEE ID</label>
+                <input id="mgmtEmpId" type="text" placeholder="E.G., KG-105">
             </div>
 
-            <div class="input-group status-select">
-                <label for="status">Status</label>
-                <select id="status" onchange="toggleWageInput()">
-                    <option value="Present">Present</option>
-                    <option value="Leave">Leave</option>
+            <div class="input-group">
+                <label for="mgmtWage">DAILY WAGE (₹)</label>
+                <input type="number" id="mgmtWage" min="0" value="500" placeholder="E.G., 500">
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-success" onclick="addEmployee()">
+                    <span class="icon">➕</span> ADD NEW EMPLOYEE & SAVE
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="attendance-form">
+        <h2 class="section-title">RECORD DAILY ATTENDANCE</h2>
+        <div class="form-container">
+            
+            <div class="input-group">
+                <label for="name">EMPLOYEE NAME</label>
+                <input id="name" type="text" placeholder="E.G., RAMESH SINGH">
+            </div>
+
+            <div class="input-group">
+                <label for="empId">EMPLOYEE ID</label>
+                <input id="empId" type="text" placeholder="E.G., KG-105">
+            </div>
+
+            <div class="input-group">
+                <label for="status">STATUS</label>
+                <select id="status">
+                    <option value="PRESENT">PRESENT</option>
+                    <option value="LEAVE">LEAVE</option>
                 </select>
             </div>
 
-            <div class="input-group wage-input" id="wageInputGroup">
-                <label for="wage">Daily Wage (₹)</label>
-                <input type="number" id="wage" min="0" value="0">
+            <div class="input-group">
+                <label for="wage">DAILY WAGE (₹)</label>
+                <input type="number" id="wage" min="0" value="0" placeholder="AUTO FILLED / ENTER WAGE">
             </div>
 
             <div class="form-actions">
                 <button class="btn btn-primary" onclick="login()">
-                    <span class="icon">➡️</span> Login / Clock-in
+                    <span class="icon">➡️</span> LOGIN / CLOCK-IN
                 </button>
                 <button class="btn btn-secondary" onclick="logout()">
-                    <span class="icon">🛑</span> Logout & Save
+                    <span class="icon">🛑</span> LOGOUT & SAVE
                 </button>
             </div>
         </div>
     </section>
 
-    <section class="attendance-table-section">
-        <h2 class="section-title">Today's Log</h2>
+    <section>
+        <h2 class="section-title">TODAY'S ATTENDANCE LOG</h2>
         <div class="table-responsive">
             <table class="attendance-table">
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Name</th>
+                        <th style="width: 25%;">NAME</th>
                         <th style="width: 15%;">ID</th>
-                        <th style="width: 15%;">Status</th>
-                        <th style="width: 15%;">Login</th>
-                        <th style="width: 15%;">Logout</th>
-                        <th style="width: 15%; text-align: right;">Wage (₹)</th>
+                        <th style="width: 15%;">STATUS</th>
+                        <th style="width: 15%;">LOGIN</th>
+                        <th style="width: 15%;">LOGOUT</th>
+                        <th style="width: 15%; text-align: right;">WAGE (₹)</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
@@ -397,18 +454,18 @@ body {
 </main>
 
 <footer class="app-footer">
-    © 2025 KHANAGO | Attendance & Wage System | Coded by Epic AI
+    © 2025 KHANAGO | ATTENDANCE & WAGE SYSTEM | CODED BY EPIC AI
 </footer>
 
 <script>
-// NOTE: This URL is placeholder for your Google Apps Script Web App
+// NOTE: YOU MUST UPDATE YOUR GOOGLE APPS SCRIPT TO HANDLE THE NEW 'ADD_EMPLOYEE' MODE!
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbzEqeOZhYUAm7D1bY392BWkcMsrQgDZq1DoAaGLbHliGl6h5Fbwy5C_yjAcZ0rUbptY/exec";
 
 let loginTime = "";
 let present = 0, leave = 0, wageTotal = 0, total = 0;
 
-// Helper function to initialize the dashboard on load
+// HELPER FUNCTIONS (TIME & DATE)
 function initDashboard() {
     document.getElementById('currentDate').innerText = today();
 }
@@ -418,35 +475,55 @@ function timeNow() {
 }
 function today() {
     return new Date().toLocaleDateString("en-IN", {
-        weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+        weekday: 'SHORT', year: 'NUMERIC', month: 'SHORT', day: 'NUMERIC'
     });
 }
 
-// Function to dynamically hide/show wage input if 'Leave' is selected
-function toggleWageInput() {
-    const status = document.getElementById('status').value;
-    const wageGroup = document.getElementById('wageInputGroup');
-    const wageInput = document.getElementById('wage');
-    
-    if (status === "Leave") {
-        wageGroup.style.display = 'none';
-        wageInput.value = 0; // Set wage to 0 when on leave
-    } else {
-        wageGroup.style.display = 'flex';
-        // Reset to a common default wage or keep last value
-        if (wageInput.value === '0') wageInput.value = '500'; 
+// 1. EMPLOYEE MANAGEMENT LOGIC
+function addEmployee() {
+    const name = document.getElementById('mgmtName');
+    const empId = document.getElementById('mgmtEmpId');
+    const wage = document.getElementById('mgmtWage');
+
+    if (!name.value || !empId.value || !wage.value) {
+        alert("🛑 PLEASE FILL IN EMPLOYEE NAME, ID, AND DAILY WAGE.");
+        return;
     }
+    
+    // Send data to Google Sheet with a specific mode for management
+    fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({
+            mode: "ADD_EMPLOYEE", // New mode for your Apps Script
+            empId: empId.value,
+            name: name.value,
+            wage: Number(wage.value) || 0
+        })
+    }).then(() => {
+        name.value = '';
+        empId.value = '';
+        wage.value = '500';
+        alert(`✅ NEW EMPLOYEE ${name.value} ADDED SUCCESSFULLY!`);
+    }).catch(error => {
+        console.error('SUBMISSION ERROR:', error);
+        name.value = '';
+        empId.value = '';
+        wage.value = '500';
+        alert("✅ NEW EMPLOYEE DATA SENT TO SERVER! (CHECK CONSOLE FOR NETWORK STATUS)");
+    });
 }
 
+// 2. ATTENDANCE LOGIC
 function login() {
     const empName = document.getElementById('name').value;
     if (!empName) {
-        alert("Please enter the Employee Name before logging in.");
+        alert("🛑 PLEASE ENTER THE EMPLOYEE NAME BEFORE LOGGING IN.");
         return;
     }
     
     loginTime = timeNow();
-    alert("✅ Login marked for " + empName + " at " + loginTime);
+    alert("✅ LOGIN MARKED FOR " + empName + " AT " + loginTime);
 }
 
 function logout() {
@@ -456,37 +533,35 @@ function logout() {
     const wage = document.getElementById('wage');
     
     if (!name.value || !empId.value) {
-        alert("🛑 Please fill in Employee Name and ID.");
+        alert("🛑 PLEASE FILL IN EMPLOYEE NAME AND ID.");
         return;
     }
 
     const stat = status.value;
     
-    // Only proceed if login was marked, or if it's a planned 'Leave'
-    if (!loginTime && stat === "Present") {
-        alert("🛑 Please click the 'Login / Clock-in' button first.");
+    if (!loginTime && stat === "PRESENT") {
+        alert("🛑 PLEASE CLICK THE 'LOGIN / CLOCK-IN' BUTTON FIRST.");
         return;
     }
 
-    const finalLogoutTime = stat === "Leave" ? "-" : timeNow();
-    const finalLoginTime = stat === "Leave" ? "-" : loginTime;
+    const finalLogoutTime = stat === "LEAVE" ? "-" : timeNow();
+    const finalLoginTime = stat === "LEAVE" ? "-" : loginTime;
     
-    // Wage is 0 if on Leave, otherwise use the input value
-    const wageVal = stat === "Leave" ? 0 : Number(wage.value) || 0; 
+    const wageVal = stat === "LEAVE" ? 0 : Number(wage.value) || 0; 
     
-    // --- Dashboard Updates ---
+    // --- DASHBOARD UPDATES ---
     total++;
     document.getElementById("totalEmp").innerText = total;
 
-    if (stat === "Present") present++; else leave++;
+    if (stat === "PRESENT") present++; else leave++;
     wageTotal += wageVal;
 
     document.getElementById("present").innerText = present;
     document.getElementById("leave").innerText = leave;
     document.getElementById("wageTotal").innerText = wageTotal;
 
-    // --- Table Row Creation ---
-    const statusClass = stat === "Present" ? "status-present" : "status-leave";
+    // --- TABLE ROW CREATION ---
+    const statusClass = stat === "PRESENT" ? "status-present" : "status-leave";
     
     const newRow = `
         <tr>
@@ -495,16 +570,17 @@ function logout() {
             <td class="${statusClass}">${stat}</td>
             <td>${finalLoginTime}</td>
             <td>${finalLogoutTime}</td>
-            <td style="text-align: right;">${wageVal}</td>
+            <td class="wage-cell">${wageVal}</td>
         </tr>`;
 
     document.getElementById('tableBody').insertAdjacentHTML('beforeend', newRow);
 
-    // --- Data Submission to Google Sheet (Async) ---
+    // --- DATA SUBMISSION TO GOOGLE SHEET ---
     fetch(SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors", // Required for Google Apps Script with simple fetch
+        mode: "no-cors",
         body: JSON.stringify({
+            mode: "ATTENDANCE_LOG", // Specific mode for logging attendance
             date: today(),
             empId: empId.value,
             name: name.value,
@@ -514,31 +590,25 @@ function logout() {
             wage: wageVal
         })
     }).then(() => {
-        // Optional: clear form fields after submission
+        // Clear form fields after submission
         name.value = '';
         empId.value = '';
-        status.value = 'Present';
-        wage.value = '500';
-        loginTime = ""; // Reset login time for the next employee
-        toggleWageInput(); // Reset wage input display
-        alert("💾 Data saved successfully!");
+        status.value = 'PRESENT';
+        wage.value = '0';
+        loginTime = ""; 
+        alert("💾 ATTENDANCE DATA SAVED SUCCESSFULLY!");
     }).catch(error => {
-        // Only shows error in console if using 'no-cors' mode, but helps catch logic issues
-        console.error('Submission failed, but may have saved due to "no-cors" mode:', error);
+        console.error('SUBMISSION ERROR:', error);
         
         // Clear form fields even on perceived error for better UX
         name.value = '';
         empId.value = '';
-        status.value = 'Present';
-        wage.value = '500';
+        status.value = 'PRESENT';
+        wage.value = '0';
         loginTime = ""; 
-        toggleWageInput(); 
-        alert("💾 Data saved successfully! (Check console for network details if needed)");
+        alert("💾 ATTENDANCE DATA SENT TO SERVER! (CHECK CONSOLE FOR NETWORK STATUS)");
     });
 }
-
-// Initial call to set wage input state correctly
-document.addEventListener('DOMContentLoaded', toggleWageInput);
 </script>
 
 </body>
