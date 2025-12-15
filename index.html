@@ -85,7 +85,6 @@ body {
 
 /* --- DASHBOARD CARDS --- */
 .dashboard-stats {
-    /* Changed grid to 3 columns for better layout of 6 cards */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 25px;
@@ -93,7 +92,7 @@ body {
 
 .stat-card {
     background: #fff;
-    padding: 25px; /* Slightly reduced padding */
+    padding: 25px;
     border-radius: 15px;
     text-align: center;
     box-shadow: var(--shadow-card);
@@ -108,7 +107,7 @@ body {
 
 .stat-label {
     margin: 0;
-    font-size: 13px; /* Slightly smaller label */
+    font-size: 13px;
     color: #777;
     font-weight: 700;
     letter-spacing: 1px;
@@ -116,7 +115,7 @@ body {
 
 .stat-value {
     margin: 5px 0 0;
-    font-size: 38px; /* Slightly smaller value */
+    font-size: 38px;
     font-weight: 900;
     color: var(--kg-orange);
 }
@@ -124,8 +123,8 @@ body {
 /* Color accents for clarity */
 .present-today .stat-value { color: #1e7e34; } 
 .on-leave .stat-value { color: #c82333; }    
-.total-wages .stat-value { color: #6f42c1; } /* PURPLE for Money Today */
-.cumulative-stats .stat-value { color: #0056b3; } /* BLUE for Cumulative */
+.total-wages .stat-value { color: #6f42c1; } 
+.cumulative-stats .stat-value { color: #0056b3; } 
 
 
 /* --- FORM STYLES (SHARED) --- */
@@ -372,12 +371,12 @@ body {
             <div class="stat-card cumulative-stats">
                 <p class="stat-label">TOTAL EMPLOYEES REGISTERED</p>
                 <h2 class="stat-value">👨‍💼<span id="totalRegistered">0</span></h2>
-                </div>
+            </div>
             
             <div class="stat-card cumulative-stats">
                 <p class="stat-label">TOTAL WAGE TILL NOW</p>
                 <h2 class="stat-value">₹<span id="cumulativeWage">0</span></h2>
-                </div>
+            </div>
         </div>
     </section>
 
@@ -475,22 +474,48 @@ body {
 // NOTE: YOU MUST UPDATE YOUR GOOGLE APPS SCRIPT TO HANDLE THE NEW 'ADD_EMPLOYEE' MODE 
 // AND ADD A FUNCTION TO FETCH CUMULATIVE DATA ON PAGE LOAD!
 const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbzEqeOZhYUAm7D1bY392BWkcMsrQgDZq1DoAaGLbHliGl6h5Fbwy5C_yjAcZ0rUbptY/exec";
+"https://script.google.com/macros/s/AKfycbzEqeOZhYUAm7D1bY392BWkcMsrQgDZq1DoAaGLbHliGl6h5Fbwy5C_yjAcZ0rUbptY/exec"; // <<< UPDATE THIS URL
 
 let loginTime = "";
 let present = 0, leave = 0, wageTotal = 0, total = 0;
-
-// PLACEHOLDERS FOR CUMULATIVE DATA (These should be fetched from the server)
 let totalRegisteredEmployees = 0;
 let cumulativeWageTotal = 0;
+
+// NEW: FUNCTION TO FETCH INITIAL DATA
+async function fetchCumulativeData() {
+    try {
+        const response = await fetch(SCRIPT_URL);
+        
+        if (response.ok) {
+            // Need to handle the response text if 'no-cors' is used and server doesn't return JSON cleanly.
+            // Assuming the script is deployed correctly and returns JSON:
+            const data = await response.json(); 
+            
+            if (data.result === "success") {
+                totalRegisteredEmployees = Number(data.totalRegistered) || 0;
+                cumulativeWageTotal = Number(data.cumulativeWage) || 0;
+                
+                document.getElementById('totalRegistered').innerText = totalRegisteredEmployees;
+                document.getElementById('cumulativeWage').innerText = cumulativeWageTotal;
+            } else {
+                console.error("Server Error:", data.message);
+                document.getElementById('totalRegistered').innerText = 'ERROR';
+                document.getElementById('cumulativeWage').innerText = 'ERROR';
+            }
+        }
+    } catch (error) {
+        console.error("Fetch Error during initialization:", error);
+        // Fallback for visual confirmation
+        document.getElementById('totalRegistered').innerText = '0';
+        document.getElementById('cumulativeWage').innerText = '0';
+    }
+}
 
 // HELPER FUNCTIONS (TIME & DATE)
 function initDashboard() {
     document.getElementById('currentDate').innerText = today();
-    // In a real app, call a function here: fetchCumulativeData();
-    // For now, we manually set the placeholders so the fields aren't empty
-    document.getElementById('totalRegistered').innerText = '0';
-    document.getElementById('cumulativeWage').innerText = '0';
+    // CALL THE NEW FETCH FUNCTION ON LOAD
+    fetchCumulativeData(); 
 }
 
 function timeNow() {
@@ -518,13 +543,13 @@ function addEmployee() {
         method: "POST",
         mode: "no-cors",
         body: JSON.stringify({
-            mode: "ADD_EMPLOYEE", // New mode for your Apps Script
+            mode: "ADD_EMPLOYEE", 
             empId: empId.value,
             name: name.value,
             wage: Number(wage.value) || 0
         })
     }).then(() => {
-        // Optimistically update the total registered count
+        // Optimistically update the total registered count and clear fields
         totalRegisteredEmployees++;
         document.getElementById('totalRegistered').innerText = totalRegisteredEmployees;
         
@@ -582,6 +607,7 @@ function logout() {
 
     if (stat === "PRESENT") present++; else leave++;
     wageTotal += wageVal;
+    
     // Update Today's wage
     document.getElementById("wageTotal").innerText = wageTotal;
     
@@ -613,7 +639,7 @@ function logout() {
         method: "POST",
         mode: "no-cors",
         body: JSON.stringify({
-            mode: "ATTENDANCE_LOG", // Specific mode for logging attendance
+            mode: "ATTENDANCE_LOG", 
             date: today(),
             empId: empId.value,
             name: name.value,
